@@ -4,11 +4,16 @@ import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 
 function App() {
+  const [signInCollapsed, setSignInCollapsed] = useState(true);
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar setSignInCollapsed={setSignInCollapsed} />
       <Hero />
-      {/* <Login /> */}
+      <Login
+        signInCollapsed={signInCollapsed}
+        setSignInCollapsed={setSignInCollapsed}
+      />
     </div>
   );
 }
