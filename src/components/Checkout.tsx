@@ -41,10 +41,12 @@ type CheckoutData = z.infer<typeof schema>;
 
 function Checkout() {
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CheckoutData>({ resolver: zodResolver(schema) });
+  const { state } = useLocation();
 
   return (
     <Grid
@@ -53,7 +55,7 @@ function Checkout() {
       p="25px"
     >
       <GridItem>
-        <form onSubmit={handleSubmit((data) => console.log(data))}>
+        <form onSubmit={handleSubmit((data) => reset)}>
           <Card
             direction={{ base: "column", sm: "row" }}
             overflow="hidden"
@@ -67,9 +69,10 @@ function Checkout() {
                 mb="15px"
               >
                 <Stack mb={{ base: "10px" }}>
-                  <Heading size="lg">Nissan Altima</Heading>
-                  <Heading size="sm">Red</Heading>
-                  <Heading size="sm">2018 Sedan</Heading>
+                  <Heading size="lg">{state.car}</Heading>
+                  <Heading size="sm">{state.car_color}</Heading>
+                  <Heading size="sm">{state.car_model}</Heading>
+                  <Heading size="sm">{state.car_model_year}</Heading>
                 </Stack>
                 <Stack border="1px solid gray" p="10px" borderRadius="10px">
                   <Text>
@@ -204,11 +207,11 @@ function Checkout() {
           <CardBody>
             <HStack justify="space-between" mb="10px">
               <Text>Rental</Text>
-              <Text>$200</Text>
+              <Text>{state.price}</Text>
             </HStack>
             <HStack justify="space-between">
               <Text>Tax</Text>
-              <Text>$12</Text>
+              <Text>0</Text>
             </HStack>
             <Divider />
             <HStack justify="space-between">
@@ -216,7 +219,7 @@ function Checkout() {
                 Total
               </Text>
               <Text size="md" fontWeight="bold">
-                $212
+                {state.price}
               </Text>
             </HStack>
           </CardBody>
