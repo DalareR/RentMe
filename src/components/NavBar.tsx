@@ -1,6 +1,7 @@
 import { Button, HStack, Text } from "@chakra-ui/react";
 import Login from "./Login";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const [signInCollapsed, setSignInCollapsed] = useState(true);
@@ -8,9 +9,11 @@ function NavBar() {
   return (
     <>
       <HStack justify="space-between" p="5px">
-        <Text color="brand.500" fontSize="2xl" fontWeight="bold">
-          Rent.me
-        </Text>
+        <Link to="/">
+          <Text color="brand.500" fontSize="2xl" fontWeight="bold">
+            Rent.me
+          </Text>
+        </Link>
         <Button
           variant="outline"
           colorScheme="teal"

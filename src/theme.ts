@@ -42,4 +42,9 @@ const textStyles = {
   },
 };
 
-export const theme = extendTheme({ colors, textStyles });
+const config = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+};
+
+export const theme = extendTheme({ colors, textStyles, config });

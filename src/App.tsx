@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import axios from "axios";
 import CarsList from "./components/CarsList";
 import Checkout from "./components/Checkout";
+import { Route, Routes } from "react-router-dom";
 
 export interface CarDetail {
   car: string;
@@ -40,9 +41,12 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/carslist" element={<CarsList carsList={carsList} />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
       <Checkout />
-      {/* <Hero />
-      <CarsList carsList={carsList} /> */}
     </div>
   );
 }

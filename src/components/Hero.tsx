@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import cover from "../assets/images/coupleInACar.jpg";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   const [docHeight, setDocHeight] = useState(0);
@@ -42,7 +43,9 @@ function Hero() {
               <Input type="date" placeholder="From" />
               <Input type="date" placeholder="" />
             </HStack>
-            <Button colorScheme="brand">Search</Button>
+            <Link to="/carslist">
+              <Button colorScheme="brand">Search</Button>
+            </Link>
           </FormControl>
         </Box>
       </Box>

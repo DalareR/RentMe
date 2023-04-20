@@ -7,6 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { CarDetail } from "../App";
+import { Link } from "react-router-dom";
 
 interface Props {
   carInfo: CarDetail;
@@ -28,9 +29,11 @@ function CarInfo({ carInfo }: Props) {
       <CardFooter>
         <VStack>
           <Heading size="sm">{carInfo.price} </Heading>
-          <Button variant="solid" colorScheme="brand">
-            Book
-          </Button>
+          <Link to="/checkout">
+            <Button variant="solid" colorScheme="brand">
+              Book
+            </Button>
+          </Link>
         </VStack>
       </CardFooter>
     </Card>
