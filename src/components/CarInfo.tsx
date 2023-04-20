@@ -3,7 +3,9 @@ import {
   Card,
   CardBody,
   CardFooter,
+  Flex,
   Heading,
+  Stack,
   VStack,
 } from "@chakra-ui/react";
 import { CarDetail } from "../App";
@@ -16,7 +18,7 @@ interface Props {
 function CarInfo({ carInfo }: Props) {
   return (
     <Card
-      direction={{ base: "column", sm: "row" }}
+      direction={{ base: "column", md: "row" }}
       overflow="hidden"
       variant="outline"
     >
@@ -27,14 +29,19 @@ function CarInfo({ carInfo }: Props) {
         <Heading size="sm"> {carInfo.car_model_year}</Heading>
       </CardBody>
       <CardFooter>
-        <VStack>
+        <Flex
+          w="100%"
+          direction={{ base: "row", md: "column" }}
+          justify={{ base: "space-between" }}
+          align={{ base: "center" }}
+        >
           <Heading size="sm">{carInfo.price} </Heading>
           <Link to="/checkout">
             <Button variant="solid" colorScheme="brand">
               Book
             </Button>
           </Link>
-        </VStack>
+        </Flex>
       </CardFooter>
     </Card>
   );
