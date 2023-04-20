@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import axios from "axios";
 import CarsList from "./components/CarsList";
+import Checkout from "./components/Checkout";
 
 export interface CarDetail {
   car: string;
@@ -39,8 +40,9 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Hero />
-      <CarsList carsList={carsList} />
+      <Checkout />
+      {/* <Hero />
+      <CarsList carsList={carsList} /> */}
     </div>
   );
 }
