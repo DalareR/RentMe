@@ -11,18 +11,18 @@ import {
 } from "@chakra-ui/react";
 import cover from "../assets/images/coupleInACar.jpg";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 
 const schema = z.object({
   location: z.string().nonempty("Location Required"),
-  pickup: z.string().nonempty("Pick-up Date Required"),
-  dropoff: z.string().nonempty("Drop-off Date Required"),
+  pickUpDate: z.string().nonempty("Pick-up Date Required"),
+  dropOffDate: z.string().nonempty("Drop-off Date Required"),
 });
 
-type RentalData = z.infer<typeof schema>;
+export type RentalData = z.infer<typeof schema>;
 
 interface Props {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -39,6 +39,7 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
     reset,
     watch,
   } = useForm<RentalData>({ resolver: zodResolver(schema) });
+  const navigate = useNavigate();
 
   useEffect(() => {
     setDocHeight(window.innerHeight - 60);
@@ -49,8 +50,9 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
 
   const onSubmit = (data: RentalData) => {
     setLocation(data.location);
-    setPickUpDate(data.pickup);
-    setDropOffDate(data.dropoff);
+    setPickUpDate(data.pickUpDate);
+    setDropOffDate(data.dropOffDate);
+    navigate("/carslist");
   };
 
   return (
@@ -73,10 +75,11 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
               <Input
+                {...register("location")}
+                id="location"
                 type="text"
                 placeholder="Location"
                 mb="10px"
-                {...register("location")}
               />
               {errors.location && (
                 <Text color="crimson">{errors.location.message}</Text>
@@ -84,7 +87,7 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
               <HStack mb="10px">
                 <VStack>
                   <FormLabel
-                    htmlFor="pickup"
+                    htmlFor="pickUpDate"
                     fontSize="sm"
                     fontWeight="bold"
                     m="0"
@@ -92,14 +95,18 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
                   >
                     Pick Up
                   </FormLabel>
-                  <Input type="date" id="pickup" {...register("pickup")} />
-                  {errors.pickup && (
-                    <Text color="crimson">{errors.pickup.message}</Text>
+                  <Input
+                    type="date"
+                    id="pickUpDate"
+                    {...register("pickUpDate")}
+                  />
+                  {errors.pickUpDate && (
+                    <Text color="crimson">{errors.pickUpDate.message}</Text>
                   )}
                 </VStack>
                 <VStack>
                   <FormLabel
-                    htmlFor="dropoff"
+                    htmlFor="dropOffDate"
                     fontSize="sm"
                     fontWeight="bold"
                     m="0"
@@ -107,17 +114,19 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
                   >
                     Drop Off
                   </FormLabel>
-                  <Input type="date" id="dropoff" {...register("dropoff")} />
-                  {errors.dropoff && (
-                    <Text color="crimson">{errors.dropoff.message}</Text>
+                  <Input
+                    type="date"
+                    id="dropOffDate"
+                    {...register("dropOffDate")}
+                  />
+                  {errors.dropOffDate && (
+                    <Text color="crimson">{errors.dropOffDate.message}</Text>
                   )}
                 </VStack>
               </HStack>
-              {/* <Link to="/carslist"> */}
               <Button colorScheme="brand" type="submit">
                 Search
               </Button>
-              {/* </Link> */}
             </FormControl>
           </form>
         </Box>

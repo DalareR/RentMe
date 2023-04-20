@@ -23,6 +23,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router-dom";
 
 const schema = z.object({
   firstName: z.string().nonempty("Name Required!").min(3),
@@ -44,7 +45,6 @@ function Checkout() {
     handleSubmit,
     formState: { errors },
   } = useForm<CheckoutData>({ resolver: zodResolver(schema) });
-  console.log(errors);
 
   return (
     <Grid
