@@ -18,7 +18,6 @@ export interface CarDetail {
 
 function App() {
   const [carsList, setCarsList] = useState<CarDetail[]>([]);
-  console.log(carsList);
   useEffect(() => {
     axios
       .create({
@@ -46,7 +45,6 @@ function App() {
         <Route path="/carslist" element={<CarsList carsList={carsList} />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
-      <Checkout />
     </div>
   );
 }
