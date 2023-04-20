@@ -18,6 +18,10 @@ export interface CarDetail {
 
 function App() {
   const [carsList, setCarsList] = useState<CarDetail[]>([]);
+  const [location, setLocation] = useState("");
+  const [pickUpDate, setPickUpDate] = useState("");
+  const [dropOffDate, setDropOffDate] = useState("");
+
   useEffect(() => {
     axios
       .create({
@@ -41,7 +45,16 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Hero />} />
+        <Route
+          path="/"
+          element={
+            <Hero
+              setLocation={setLocation}
+              setDropOffDate={setDropOffDate}
+              setPickUpDate={setPickUpDate}
+            />
+          }
+        />
         <Route path="/carslist" element={<CarsList carsList={carsList} />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
