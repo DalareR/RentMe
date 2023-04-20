@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { CarDetail } from "../App";
 import { FiSearch } from "react-icons/fi";
+import CarInfo from "./CarInfo";
 
 interface Props {
   carsList: CarDetail[];
@@ -30,31 +31,9 @@ function CarsList({ carsList }: Props): any {
           />
           <Input type="text" placeholder="Search by Car Name" />
         </InputGroup>
-        {carsList.map((car) => {
-          return (
-            <Card
-              key={car.id}
-              direction={{ base: "column", sm: "row" }}
-              overflow="hidden"
-              variant="outline"
-            >
-              <CardBody>
-                <Heading size="lg">{car.car}</Heading>
-                <Heading size="sm">Color</Heading>
-                <Heading size="sm">{car.car_model}</Heading>
-                <Heading size="sm"> {car.car_model_year}</Heading>
-              </CardBody>
-              <CardFooter>
-                <VStack>
-                  <Heading size="sm">{car.price} </Heading>
-                  <Button variant="solid" colorScheme="brand">
-                    Book
-                  </Button>
-                </VStack>
-              </CardFooter>
-            </Card>
-          );
-        })}
+        {carsList.map((car) => (
+          <CarInfo carInfo={car} key={car.id} />
+        ))}
       </Stack>
     </Container>
   );
