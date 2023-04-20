@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import axios from "axios";
@@ -16,7 +15,6 @@ export interface CarDetail {
 }
 
 function App() {
-  const [signInCollapsed, setSignInCollapsed] = useState(true);
   const [carsList, setCarsList] = useState<CarDetail[]>([]);
   console.log(carsList);
   useEffect(() => {
@@ -40,12 +38,8 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar setSignInCollapsed={setSignInCollapsed} />
-      {/* <Hero />
-      <Login
-        signInCollapsed={signInCollapsed}
-        setSignInCollapsed={setSignInCollapsed}
-      /> */}
+      <NavBar />
+      <Hero />
       <CarsList carsList={carsList} />
     </div>
   );

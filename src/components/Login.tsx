@@ -30,6 +30,7 @@ function Login({ signInCollapsed, setSignInCollapsed }: Props) {
       right="0"
       bottom="0"
       bg="rgba(0,0,0,.8)"
+      zIndex={1}
     >
       <Flex h="100%" w="100%" justify="center" align="center">
         <Card minW={{ base: "auto", md: "md" }}>
