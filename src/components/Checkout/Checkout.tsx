@@ -2,32 +2,22 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  Container,
   Divider,
-  Flex,
-  FormControl,
   Grid,
   GridItem,
   HStack,
   Heading,
-  Icon,
-  Input,
-  Stack,
   Text,
-  VStack,
 } from "@chakra-ui/react";
-import CarInfo from "../CarInfo";
-import { BsCheckLg } from "react-icons/bs";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation } from "react-router-dom";
 import CheckoutCarInfo from "./CheckoutCarInfo";
-import FormInput from "../FormInput";
 import CheckoutDriversInfo from "./CheckoutDriversInfo";
 import CheckoutContact from "./CheckoutContact";
+import CheckoutChargeSummary from "./CheckoutChargeSummary";
 
 const schema = z.object({
   firstName: z.string().nonempty("Name Required!").min(3),
@@ -69,33 +59,7 @@ function Checkout() {
         </form>
       </GridItem>
       <GridItem>
-        <Card overflow="hidden" variant="outline">
-          <CardHeader>
-            <Heading size="md" fontWeight="bold">
-              Summary of Charges
-            </Heading>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <HStack justify="space-between" mb="10px">
-              <Text>Rental</Text>
-              <Text>{state.price}</Text>
-            </HStack>
-            <HStack justify="space-between">
-              <Text>Tax</Text>
-              <Text>0</Text>
-            </HStack>
-            <Divider />
-            <HStack justify="space-between">
-              <Text size="md" fontWeight="bold">
-                Total
-              </Text>
-              <Text size="md" fontWeight="bold">
-                {state.price}
-              </Text>
-            </HStack>
-          </CardBody>
-        </Card>
+        <CheckoutChargeSummary price={state.price} />
       </GridItem>
     </Grid>
   );
