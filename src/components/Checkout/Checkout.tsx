@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardBody,
@@ -9,6 +10,7 @@ import {
   HStack,
   Heading,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -28,7 +30,10 @@ const schema = z.object({
     .nonempty("Email Required")
     .email("Not valid Email! Check for missing '@' or '.com'"),
   countryCode: z.string().nonempty("Country Code Required!"),
-  phone: z.string().nonempty("Phone Number Required!"),
+  phone: z
+    .string()
+    .nonempty("Phone Number Required!")
+    .max(10, "Incorrect phone number"),
 });
 
 type CheckoutData = z.infer<typeof schema>;
@@ -40,7 +45,19 @@ function Checkout() {
     handleSubmit,
     formState: { errors },
   } = useForm<CheckoutData>({ resolver: zodResolver(schema) });
+  const toast = useToast();
   const { state } = useLocation();
+
+  const onsubmit = (data: CheckoutData) => {
+    reset();
+    toast({
+      title: "Booking Complete 🎉",
+      description: `Thank you, ${data.firstName} ${data.lastName} for choosing us. We wish you safe travels.`,
+      duration: 5000,
+      isClosable: true,
+      status: "success",
+    });
+  };
 
   return (
     <Grid
@@ -49,7 +66,7 @@ function Checkout() {
       p="25px"
     >
       <GridItem>
-        <form onSubmit={handleSubmit((data) => reset)}>
+        <form onSubmit={handleSubmit(onsubmit)}>
           <CheckoutCarInfo carInfo={state} />
           <CheckoutDriversInfo register={register} errors={errors} />
           <CheckoutContact register={register} errors={errors} />
