@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import axios from "axios";
 import CarsList from "./components/CarsList";
-import Checkout from "./components/Checkout";
+import Checkout from "./components/Checkout/Checkout";
 import { Route, Routes } from "react-router-dom";
 
 export interface CarDetail {
