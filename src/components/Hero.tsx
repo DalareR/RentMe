@@ -8,6 +8,7 @@ import {
   Input,
   VStack,
   Text,
+  Stack,
 } from "@chakra-ui/react";
 import cover from "../assets/images/coupleInACar.jpg";
 import { useEffect, useState } from "react";
@@ -52,7 +53,7 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
     setLocation(data.location);
     setPickUpDate(data.pickUpDate);
     setDropOffDate(data.dropOffDate);
-    navigate("/carslist");
+    navigate("/carslist", { state: data });
   };
 
   return (
@@ -67,6 +68,8 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
         bgImage={cover}
         bgPos="center"
         bgSize="cover"
+        bgRepeat="no-repeat"
+        overflow="hidden"
       >
         <Box bg="white" minW="300px" maxW="500px" p="15px" borderRadius="5px">
           <Heading fontSize="2xl" mb="10px">
@@ -84,7 +87,7 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
               {errors.location && (
                 <Text color="crimson">{errors.location.message}</Text>
               )}
-              <HStack mb="10px">
+              <Stack direction={{ base: "column", md: "row" }} mb="10px">
                 <VStack>
                   <FormLabel
                     htmlFor="pickUpDate"
@@ -123,7 +126,7 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
                     <Text color="crimson">{errors.dropOffDate.message}</Text>
                   )}
                 </VStack>
-              </HStack>
+              </Stack>
               <Button colorScheme="brand" type="submit">
                 Search
               </Button>
