@@ -22,10 +22,10 @@ import {
 } from "@chakra-ui/react";
 import { CarDetail } from "../App";
 import { FiSearch } from "react-icons/fi";
-import CarInfo from "./CarInfo";
+import CarInfo from "../components/CarInfo";
 import { useState } from "react";
 import _ from "lodash";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 import paginate from "../paginate";
 import { useLocation } from "react-router-dom";
 

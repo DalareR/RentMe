@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
-import Hero from "./components/Hero";
+import Hero from "./pages/Hero";
 import axios from "axios";
-import CarsList from "./components/CarsList";
-import Checkout from "./components/Checkout/Checkout";
+import CarsList from "./pages/CarsList";
+import Checkout from "./pages/Checkout";
 import { Route, Routes } from "react-router-dom";
 import { pick } from "lodash";
 

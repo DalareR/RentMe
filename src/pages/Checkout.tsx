@@ -3,10 +3,10 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocation } from "react-router-dom";
-import CheckoutCarInfo from "./CheckoutCarInfo";
-import CheckoutDriversInfo from "./CheckoutDriversInfo";
-import CheckoutContact from "./CheckoutContact";
-import CheckoutChargeSummary from "./CheckoutChargeSummary";
+import CheckoutCarInfo from "../components/Checkout/CheckoutCarInfo";
+import CheckoutDriversInfo from "../components/Checkout/CheckoutDriversInfo";
+import CheckoutContact from "../components/Checkout/CheckoutContact";
+import CheckoutChargeSummary from "../components/Checkout/CheckoutChargeSummary";
 
 const schema = z.object({
   firstName: z.string().nonempty("Name Required!").min(3),
