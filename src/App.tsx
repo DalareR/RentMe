@@ -5,6 +5,7 @@ import axios from "axios";
 import CarsList from "./components/CarsList";
 import Checkout from "./components/Checkout/Checkout";
 import { Route, Routes } from "react-router-dom";
+import { pick } from "lodash";
 
 export interface CarDetail {
   car: string;
@@ -56,7 +57,12 @@ function App() {
           }
         />
         <Route path="/carslist" element={<CarsList carsList={carsList} />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <Checkout pickUpDate={pickUpDate} dropOffDate={dropOffDate} />
+          }
+        />
       </Routes>
     </div>
   );

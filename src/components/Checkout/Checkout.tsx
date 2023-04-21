@@ -1,17 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Divider,
-  Grid,
-  GridItem,
-  HStack,
-  Heading,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Button, Grid, GridItem, useToast, Text } from "@chakra-ui/react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,7 +25,12 @@ const schema = z.object({
 
 type CheckoutData = z.infer<typeof schema>;
 
-function Checkout() {
+interface Props {
+  pickUpDate: string;
+  dropOffDate: string;
+}
+
+function Checkout({ pickUpDate, dropOffDate }: Props) {
   const {
     reset,
     register,
@@ -67,7 +59,11 @@ function Checkout() {
     >
       <GridItem>
         <form onSubmit={handleSubmit(onsubmit)}>
-          <CheckoutCarInfo carInfo={state} />
+          <CheckoutCarInfo
+            carInfo={state}
+            pickUpDate={pickUpDate}
+            dropOffDate={dropOffDate}
+          />
           <CheckoutDriversInfo register={register} errors={errors} />
           <CheckoutContact register={register} errors={errors} />
           <Button type="submit" w="100%" colorScheme="brand">

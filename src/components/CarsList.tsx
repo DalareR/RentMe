@@ -27,6 +27,7 @@ import { useState } from "react";
 import _ from "lodash";
 import Pagination from "./Pagination";
 import paginate from "../paginate";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   carsList: CarDetail[];
@@ -71,7 +72,7 @@ function CarsList({ carsList }: Props): any {
   });
 
   return (
-    <Stack p={{ md: "25px" }}>
+    <Stack p={{ base: "10px", md: "25px" }}>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"

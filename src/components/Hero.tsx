@@ -37,8 +37,6 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<RentalData>({ resolver: zodResolver(schema) });
   const navigate = useNavigate();
 

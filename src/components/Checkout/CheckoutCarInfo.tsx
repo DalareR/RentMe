@@ -14,9 +14,11 @@ import { CarDetail } from "../../App";
 
 interface Props {
   carInfo: CarDetail;
+  pickUpDate: string;
+  dropOffDate: string;
 }
 
-function CheckoutCarInfo({ carInfo }: Props) {
+function CheckoutCarInfo({ carInfo, pickUpDate, dropOffDate }: Props) {
   return (
     <Card
       direction={{ base: "column", sm: "row" }}
@@ -59,13 +61,13 @@ function CheckoutCarInfo({ carInfo }: Props) {
           <Stack>
             <Text color="gray">PICK-UP</Text>
             <Heading size="md" fontWeight="bold">
-              Thu, Apr 27, 2023
+              {pickUpDate}
             </Heading>
           </Stack>
           <Stack>
             <Text color="gray">DROP-OFF</Text>
             <Heading size="md" fontWeight="bold">
-              Thu, May 4, 2023
+              {dropOffDate}
             </Heading>
           </Stack>
         </HStack>
