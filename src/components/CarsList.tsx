@@ -15,6 +15,10 @@ import {
   Box,
   Flex,
   HStack,
+  Grid,
+  GridItem,
+  Select,
+  Wrap,
 } from "@chakra-ui/react";
 import { CarDetail } from "../App";
 import { FiSearch } from "react-icons/fi";
@@ -32,6 +36,7 @@ function CarsList({ carsList }: Props): any {
   const maxItems = 8;
   const [searchedCarName, setSearchedCarName] = useState("");
   const [activePage, setActivePage] = useState(0);
+  const [selectedCarYear, setSelectedCarYear] = useState(0);
 
   const searchFilteredCarsList = searchedCarName
     ? carsList.filter(
@@ -45,45 +50,76 @@ function CarsList({ carsList }: Props): any {
       )
     : carsList;
 
+  const carModelYear = _.uniq(
+    _.orderBy(
+      searchFilteredCarsList.map((car) => car.car_model_year),
+      (year) => year,
+      "desc"
+    )
+  );
+
+  const sortedModelYear = selectedCarYear
+    ? searchFilteredCarsList.filter(
+        (car) => car.car_model_year === selectedCarYear
+      )
+    : searchFilteredCarsList;
+
   const paginatedItems = paginate({
-    items: searchFilteredCarsList,
+    items: sortedModelYear,
     maxItemsInPage: maxItems,
     activePage: activePage,
   });
 
   return (
-    <Container>
-      <Stack>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<Icon as={FiSearch} />}
-          />
-          <Input
-            value={searchedCarName}
+    <Stack p={{ md: "25px" }}>
+      <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={<Icon as={FiSearch} />}
+        />
+        <Input
+          value={searchedCarName}
+          onChange={(e) => {
+            setActivePage(0);
+            setSearchedCarName(e.target.value);
+          }}
+          type="text"
+          placeholder="Search by Car Name or Model"
+        />
+      </InputGroup>
+      <Grid gridTemplateColumns={{ base: "auto", md: "1fr 4fr" }} gap={5}>
+        <GridItem>
+          <Select
+            placeholder="Select car make year"
             onChange={(e) => {
+              setSelectedCarYear(+e.target.value);
               setActivePage(0);
-              setSearchedCarName(e.target.value);
             }}
-            type="text"
-            placeholder="Search by Car Name or Model"
-          />
-        </InputGroup>
-        {searchFilteredCarsList.length === 0 ? (
-          <Text>No Results</Text>
-        ) : (
-          paginatedItems.map((car) => <CarInfo carInfo={car} key={car.id} />)
-        )}
-        {searchFilteredCarsList.length <= 8 ? null : (
-          <Pagination
-            items={searchFilteredCarsList}
-            maxItemsInPage={maxItems}
-            activePage={activePage}
-            onActivePageClick={(page) => setActivePage(page)}
-          />
-        )}
-      </Stack>
-    </Container>
+          >
+            {carModelYear.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </Select>
+        </GridItem>
+        <GridItem>
+          {paginatedItems.length === 0 ? (
+            <Text>No Results</Text>
+          ) : (
+            paginatedItems.map((car) => <CarInfo carInfo={car} key={car.id} />)
+          )}
+          {sortedModelYear.length <= 8 ? null : (
+            <Pagination
+              items={sortedModelYear}
+              maxItemsInPage={maxItems}
+              activePage={activePage}
+              onActivePageClick={(page) => setActivePage(page)}
+            />
+          )}
+        </GridItem>
+      </Grid>
+    </Stack>
   );
 }
 

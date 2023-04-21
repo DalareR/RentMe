@@ -28,6 +28,7 @@ function CarInfo({ carInfo }: Props) {
       direction={{ base: "column", md: "row" }}
       overflow="hidden"
       variant="outline"
+      mb="10px"
     >
       <CardBody>
         <Heading size="lg">{carInfo.car}</Heading>
