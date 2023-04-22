@@ -19,11 +19,12 @@ function Testimonial() {
   const totalTestimonial = testimonial.length;
 
   useEffect(() => {
-    setInterval(() => {
+    const timer = setInterval(() => {
       currentTestimonial === totalTestimonial - 1
         ? setCurrentTestimonial(0)
         : setCurrentTestimonial(currentTestimonial + 1);
-    }, 10000);
+    }, 5000);
+    return () => clearInterval(timer);
   }, [currentTestimonial]);
 
   return (
@@ -32,6 +33,7 @@ function Testimonial() {
         <Heading mb="5" color="brand.500" textAlign="center">
           What our customers say about us
         </Heading>
+        {/* <Text>{currentTestimonial}</Text> */}
         <Flex gap="5" className="testimonialGroup">
           <Card
             direction={{ base: "column", sm: "row" }}
