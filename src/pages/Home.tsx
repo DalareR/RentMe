@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import Service from "../components/Service";
+import Testimonial from "../components/Testimonial";
 
 interface Props {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -16,6 +17,7 @@ function Home({ setLocation, setDropOffDate, setPickUpDate }: Props) {
         setPickUpDate={setPickUpDate}
       />
       <Service />
+      <Testimonial />
     </>
   );
 }
