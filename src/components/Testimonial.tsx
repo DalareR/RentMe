@@ -27,26 +27,27 @@ function Testimonial() {
   }, [currentTestimonial]);
 
   return (
-    <Flex justify="center" bg="brand.100" p="10">
+    <Flex justify="center" bg="brand.100" p={{ base: 5, md: 10 }}>
       <Flex direction="column" align="center">
-        <Heading mb="5" color="brand.500">
+        <Heading mb="5" color="brand.500" textAlign="center">
           What our customers say about us
         </Heading>
         <Flex gap="5" className="testimonialGroup">
           <Card
             direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
+            overflow="scroll"
             variant="outline"
             maxW={700}
-            h={300}
+            h={{ base: 600, md: 300 }}
             p={5}
           >
             <Image
               objectFit="cover"
+              objectPosition="top"
               maxW={{ base: "100%", sm: "200px" }}
-              maxH={{ base: "100%", sm: "400px" }}
+              maxH={{ base: "200px", lg: "400px" }}
               src={testimonial[currentTestimonial].userImg}
-              alt="Caffe Latte"
+              alt="Photo of a happy customer"
             />
 
             <Stack>
