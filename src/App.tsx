@@ -7,6 +7,7 @@ import Checkout from "./pages/Checkout";
 import { Route, Routes } from "react-router-dom";
 import { pick } from "lodash";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 export interface CarDetail {
   car: string;
@@ -65,6 +66,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
