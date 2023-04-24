@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <Box p="20px">
+    <Box p="20px" bg={`rgba(0,0,0,.8)`} color="white">
       <Heading size="lg" color="brand.500">
         Rent.me
       </Heading>
