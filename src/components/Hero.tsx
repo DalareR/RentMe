@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import { motion } from "framer-motion";
 
 const schema = z.object({
   location: z.string().nonempty("Location Required"),
@@ -69,7 +70,16 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
         bgRepeat="no-repeat"
         overflow="hidden"
       >
-        <Box bg="white" minW="300px" maxW="500px" p="15px" borderRadius="5px">
+        <Box
+          as={motion.div}
+          initial={{ x: -100 }}
+          animate={{ x: 0, transition: { duration: 1, type: "spring" } }}
+          bg="white"
+          minW="300px"
+          maxW="500px"
+          p="15px"
+          borderRadius="5px"
+        >
           <Heading fontSize="2xl" mb="10px">
             Car Rentals
           </Heading>

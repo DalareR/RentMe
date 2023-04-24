@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Hero from "../components/Hero";
 import Service from "../components/Service";
 import Testimonial from "../components/Testimonial";
