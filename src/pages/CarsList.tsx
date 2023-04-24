@@ -29,6 +29,7 @@ import Pagination from "../components/Pagination";
 import paginate from "../paginate";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import PageCurtain from "../components/PageCurtain";
 
 const variants = {
   initial: {
@@ -152,16 +153,7 @@ function CarsList({ carsList }: Props): any {
           </GridItem>
         </Grid>
       </Stack>
-      {/* <Box
-        display={test ? "block" : "none"}
-        w={"100vw"}
-        h="100vh"
-        bg="black"
-        position="fixed"
-        top="0"
-        left="0"
-        zIndex={2}
-      /> */}
+      <PageCurtain>Car List</PageCurtain>
     </>
   );
 }

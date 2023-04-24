@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Hero from "../components/Hero";
 import Service from "../components/Service";
 import Testimonial from "../components/Testimonial";
+import PageCurtain from "../components/PageCurtain";
 
 interface Props {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -19,6 +20,7 @@ function Home({ setLocation, setDropOffDate, setPickUpDate }: Props) {
       />
       <Service />
       <Testimonial />
+      <PageCurtain>Home</PageCurtain>
     </>
   );
 }

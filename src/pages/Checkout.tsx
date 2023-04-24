@@ -7,6 +7,7 @@ import CheckoutCarInfo from "../components/Checkout/CheckoutCarInfo";
 import CheckoutDriversInfo from "../components/Checkout/CheckoutDriversInfo";
 import CheckoutContact from "../components/Checkout/CheckoutContact";
 import CheckoutChargeSummary from "../components/Checkout/CheckoutChargeSummary";
+import PageCurtain from "../components/PageCurtain";
 
 const schema = z.object({
   firstName: z.string().nonempty("Name Required!").min(3),
@@ -52,29 +53,32 @@ function Checkout({ pickUpDate, dropOffDate }: Props) {
   };
 
   return (
-    <Grid
-      gridTemplateColumns={{ lg: `2fr 1fr`, base: `auto` }}
-      gap={5}
-      p="25px"
-    >
-      <GridItem>
-        <form onSubmit={handleSubmit(onsubmit)}>
-          <CheckoutCarInfo
-            carInfo={state}
-            pickUpDate={pickUpDate}
-            dropOffDate={dropOffDate}
-          />
-          <CheckoutDriversInfo register={register} errors={errors} />
-          <CheckoutContact register={register} errors={errors} />
-          <Button type="submit" w="100%" colorScheme="brand">
-            Complete Booking
-          </Button>
-        </form>
-      </GridItem>
-      <GridItem>
-        <CheckoutChargeSummary price={state.price} />
-      </GridItem>
-    </Grid>
+    <>
+      <Grid
+        gridTemplateColumns={{ lg: `2fr 1fr`, base: `auto` }}
+        gap={5}
+        p="25px"
+      >
+        <GridItem>
+          <form onSubmit={handleSubmit(onsubmit)}>
+            <CheckoutCarInfo
+              carInfo={state}
+              pickUpDate={pickUpDate}
+              dropOffDate={dropOffDate}
+            />
+            <CheckoutDriversInfo register={register} errors={errors} />
+            <CheckoutContact register={register} errors={errors} />
+            <Button type="submit" w="100%" colorScheme="brand">
+              Complete Booking
+            </Button>
+          </form>
+        </GridItem>
+        <GridItem>
+          <CheckoutChargeSummary price={state.price} />
+        </GridItem>
+      </Grid>
+      <PageCurtain>Checkout</PageCurtain>
+    </>
   );
 }
 
