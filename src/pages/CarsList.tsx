@@ -23,11 +23,27 @@ import {
 import { CarDetail } from "../App";
 import { FiSearch } from "react-icons/fi";
 import CarInfo from "../components/CarInfo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
 import Pagination from "../components/Pagination";
 import paginate from "../paginate";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const variants = {
+  initial: {
+    opacity: 0,
+    y: -100,
+  },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      when: "beforeChildren",
+      delay: 0.05 * i,
+    },
+  }),
+};
 
 interface Props {
   carsList: CarDetail[];
@@ -72,55 +88,81 @@ function CarsList({ carsList }: Props): any {
   });
 
   return (
-    <Stack p={{ base: "10px", md: "25px" }}>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          children={<Icon as={FiSearch} />}
-        />
-        <Input
-          value={searchedCarName}
-          onChange={(e) => {
-            setActivePage(0);
-            setSearchedCarName(e.target.value);
-          }}
-          type="text"
-          placeholder="Search by Car Name or Model"
-        />
-      </InputGroup>
-      <Grid gridTemplateColumns={{ base: "auto", md: "1fr 4fr" }} gap={5}>
-        <GridItem>
-          <Select
-            placeholder="Select car make year"
+    <>
+      <Stack p={{ base: "10px", md: "25px" }}>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents="none"
+            children={<Icon as={FiSearch} />}
+          />
+          <Input
+            value={searchedCarName}
             onChange={(e) => {
-              setSelectedCarYear(+e.target.value);
               setActivePage(0);
+              setSearchedCarName(e.target.value);
             }}
-          >
-            {carModelYear.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </Select>
-        </GridItem>
-        <GridItem>
-          {paginatedItems.length === 0 ? (
-            <Text>No Results</Text>
-          ) : (
-            paginatedItems.map((car) => <CarInfo carInfo={car} key={car.id} />)
-          )}
-          {sortedModelYear.length <= 8 ? null : (
-            <Pagination
-              items={sortedModelYear}
-              maxItemsInPage={maxItems}
-              activePage={activePage}
-              onActivePageClick={(page) => setActivePage(page)}
-            />
-          )}
-        </GridItem>
-      </Grid>
-    </Stack>
+            type="text"
+            placeholder="Search by Car Name or Model"
+          />
+        </InputGroup>
+        <Grid gridTemplateColumns={{ base: "auto", md: "1fr 4fr" }} gap={5}>
+          <GridItem>
+            <Select
+              placeholder="Select car make year"
+              onChange={(e) => {
+                setSelectedCarYear(+e.target.value);
+                setActivePage(0);
+              }}
+            >
+              {carModelYear.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </Select>
+          </GridItem>
+          <GridItem>
+            <Box
+              as={motion.div}
+              variants={variants}
+              initial="initial"
+              animate="animate"
+            >
+              {paginatedItems.length === 0 ? (
+                <Text>No Results</Text>
+              ) : (
+                paginatedItems.map((car, i) => (
+                  <CarInfo
+                    carInfo={car}
+                    key={car.id}
+                    variants={variants}
+                    custom={i}
+                  />
+                ))
+              )}
+              {sortedModelYear.length <= 8 ? null : (
+                <Pagination
+                  items={sortedModelYear}
+                  maxItemsInPage={maxItems}
+                  activePage={activePage}
+                  onActivePageClick={(page) => setActivePage(page)}
+                />
+              )}
+            </Box>
+          </GridItem>
+        </Grid>
+      </Stack>
+      {/* <Box
+        display={test ? "block" : "none"}
+        w={"100vw"}
+        h="100vh"
+        bg="black"
+        position="fixed"
+        top="0"
+        left="0"
+        zIndex={2}
+      /> */}
+    </>
   );
 }
 

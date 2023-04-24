@@ -7,16 +7,20 @@ import {
   Heading,
   Text,
   Stack,
+  Box,
   VStack,
 } from "@chakra-ui/react";
 import { CarDetail } from "../App";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 interface Props {
   carInfo: CarDetail;
+  variants: any;
+  custom: number;
 }
 
-function CarInfo({ carInfo }: Props) {
+function CarInfo({ carInfo, variants, custom }: Props) {
   const navigate = useNavigate();
 
   const handleClick = (carInfo: CarDetail) => {
@@ -25,6 +29,9 @@ function CarInfo({ carInfo }: Props) {
 
   return (
     <Card
+      as={motion.div}
+      variants={variants}
+      custom={custom}
       direction={{ base: "column", md: "row" }}
       overflow="hidden"
       variant="outline"
