@@ -1,3 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
+.serviceEven:nth-of-type(even) .serviceImage {
+  order: 2;
+}
