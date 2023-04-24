@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Service from "../components/Service";
 import Testimonial from "../components/Testimonial";
 import PageCurtain from "../components/PageCurtain";
+import { Box } from "@chakra-ui/react";
 
 interface Props {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -18,9 +19,11 @@ function Home({ setLocation, setDropOffDate, setPickUpDate }: Props) {
         setDropOffDate={setDropOffDate}
         setPickUpDate={setPickUpDate}
       />
-      <Service />
+      <Box maxW="1500px" margin="auto">
+        <Service />
+      </Box>
       <Testimonial />
-      <PageCurtain>Home</PageCurtain>
+      <PageCurtain>Rent me</PageCurtain>
     </>
   );
 }
