@@ -15,11 +15,15 @@ function NavBar() {
       >
         <Link to="/">
           <Text color="brand.500" fontSize="2xl" fontWeight="bold">
-            Rent.me
+            Rent me
           </Text>
         </Link>
         <HStack>
-          <Text fontWeight="bold" color="brand.500">
+          <Text
+            display={{ base: "none", md: "block" }}
+            fontWeight="bold"
+            color="brand.500"
+          >
             1(717)123-4567
           </Text>
           <Button
