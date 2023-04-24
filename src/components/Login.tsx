@@ -14,6 +14,7 @@ import {
   Icon,
   HStack,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 interface Props {
   signInCollapsed: boolean;
@@ -23,7 +24,12 @@ interface Props {
 function Login({ signInCollapsed, setSignInCollapsed }: Props) {
   return (
     <Box
-      display={signInCollapsed ? "none" : "auto"}
+      as={motion.div}
+      initial={{ scaleY: 0 }}
+      animate={{
+        scaleY: signInCollapsed ? 0 : 1,
+        transition: { delay: 0.1 },
+      }}
       position="fixed"
       top="0"
       left="0"
