@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 
-.serviceEven:nth-of-type(even) .serviceImage {
-  order: 2;
+@media screen and (min-width: 768px) {
+  .serviceEven:nth-of-type(even) .serviceImage {
+    order: 2;
+  }
 }
