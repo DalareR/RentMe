@@ -72,8 +72,11 @@ function Hero({ setLocation, setDropOffDate, setPickUpDate }: Props) {
       >
         <Box
           as={motion.div}
-          initial={{ x: -100 }}
-          animate={{ x: 0, transition: { duration: 1, type: "spring" } }}
+          initial={{ x: "-120%" }}
+          animate={{
+            x: 0,
+            transition: { duration: 1, delay: 2.5, type: "spring" },
+          }}
           bg="white"
           minW="300px"
           maxW="500px"

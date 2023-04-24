@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { testimonial } from "../data/testimonial";
+import { motion } from "framer-motion";
 
 function Testimonial() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
