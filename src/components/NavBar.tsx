@@ -8,7 +8,11 @@ function NavBar() {
 
   return (
     <>
-      <HStack justify="space-between" p="5px">
+      <HStack
+        justify="space-between"
+        p="5px"
+        boxShadow={"0 5px 10px rgba(0,0,0, .2)"}
+      >
         <Link to="/">
           <Text color="brand.500" fontSize="2xl" fontWeight="bold">
             Rent.me
