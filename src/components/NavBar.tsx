@@ -1,4 +1,4 @@
-import { Button, HStack, Text } from "@chakra-ui/react";
+import { Button, HStack, Heading, Stack, Text } from "@chakra-ui/react";
 import Login from "./Login";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,13 +14,18 @@ function NavBar() {
             Rent.me
           </Text>
         </Link>
-        <Button
-          variant="outline"
-          colorScheme="teal"
-          onClick={() => setSignInCollapsed(false)}
-        >
-          Sign in
-        </Button>
+        <HStack>
+          <Text fontWeight="bold" color="brand.500">
+            1(717)123-4567
+          </Text>
+          <Button
+            variant="outline"
+            colorScheme="teal"
+            onClick={() => setSignInCollapsed(false)}
+          >
+            Sign in
+          </Button>
+        </HStack>
       </HStack>
       <Login
         signInCollapsed={signInCollapsed}
